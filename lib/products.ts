@@ -90,5 +90,18 @@ export function getProduct(id: string) {
 }
 
 export function getProductsByCategory(category: string) {
-  return products.filter((p) => p.category === category);
+  return products.filter((product) => product.category === category);
+}
+
+export function getCategoryBySlug(slug: string) {
+  const found = products.find((p) => categoryToSlug(p.category) === slug);
+  return found ? found.category : null;
+}
+
+export function categoryToSlug(category: string) {
+  return category
+    .toLowerCase()
+    .replace(/ \/ /g, "-")
+    .replace(/, | /g, "-")
+    .replace(/etc\./, "");
 }

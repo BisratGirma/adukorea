@@ -4,6 +4,8 @@ import { Product } from "@/lib/products";
 import ProductCard from "./ProductCard";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { useRef } from "react";
+import { categoryToSlug } from "@/lib/products";
+import Link from "next/link";
 
 export default function ProductCarousel({
   category,
@@ -62,12 +64,12 @@ export default function ProductCarousel({
         </div>
 
         <div className="text-center mt-8">
-          <a
-            href="#"
+          <Link
+            href={`/category/${categoryToSlug(category)}`}
             className="inline-block bg-primary text-white px-6 py-2 rounded-md hover:bg-primary-600 transition-colors"
           >
             View All
-          </a>
+          </Link>
         </div>
       </div>
     </section>

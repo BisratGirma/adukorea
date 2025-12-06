@@ -1,0 +1,51 @@
+import { getProductsByCategory, getCategoryBySlug } from "@/lib/products";
+import ProductCard from "@/components/ProductCard";
+import PriceRangeSlider from "@/components/PriceRangeSlider";
+import Link from "next/link";
+
+export default function CategoryPage({ params }: { params: { slug: string } }) {
+  const categoryName = getCategoryBySlug(params.slug);
+  const products = getProductsByCategory(categoryName || "");
+
+  if (!categoryName) {
+    return <div>Category not found</div>;
+  }
+
+  return (
+    <div className="bg-gray-50">
+      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Sidebar */}
+          <aside className="lg:col-span-1">
+            <PriceRangeSlider />
+          </aside>
+
+          {/* Main Content */}
+          <main className="lg:col-span-3">
+            <div className="text-sm text-gray-500 mb-4">
+              <Link href="/" className="hover:text-primary">Home</Link>
+              <span className="mx-2">/</span>
+              <span>{categoryName}</span>
+            </div>
+            <h1 className="text-4xl font-serif font-bold text-gray-800 mb-6">{categoryName}</h1>
+            
+            <div className="flex justify-between items-center mb-6">
+              <p className="text-sm text-gray-600">Showing 1–{products.length} of {products.length} results</p>
+              <select className="border border-gray-300 rounded-md text-sm">
+                <option>Sort by price: high to low</option>
+                <option>Sort by price: low to high</option>
+                <option>Sort by latest</option>
+              </select>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+              {products.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+  );
+}
