@@ -10,7 +10,7 @@ export default function ProductCard({ product }: { product: Product }) {
       href={`/products/${product.id}`}
       className="group block bg-transparent text-center"
     >
-      <div className="relative w-full h-56 mx-auto">
+      <div className="relative w-full h-80 mx-auto">
         <Image
           src={'/placeholder.png'}
           alt={product.name}
@@ -19,7 +19,7 @@ export default function ProductCard({ product }: { product: Product }) {
           className="group-hover:scale-105 transition-transform"
         />
       </div>
-      <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
+      <h3 className="mt-4 text-base font-medium text-gray-800">{product.name}</h3>
     </Link>
   );
 }

@@ -63,3 +63,12 @@ body {
 /* Small helpers used by form focus states */
 .focus-ring-primary:focus { outline: none; box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.12); border-color: var(--color-primary); }
 
+/* Scrollbar hiding utility */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+

@@ -36,25 +36,25 @@ export default function ProductCarousel({
         <div className="relative">
           <div
             ref={scrollRef}
-            className="flex space-x-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide py-4"
+            className="grid grid-flow-col auto-cols-[80%] sm:auto-cols-[45%] md:auto-cols-[30%] lg:auto-cols-[33%] gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide py-4 px-4 sm:px-6 lg:px-8"
           >
             {products.map((product) => (
-              <div key={product.id} className="snap-center shrink-0 w-64">
+              <div key={product.id} className="snap-center">
                 <ProductCard product={product} />
               </div>
             ))}
           </div>
 
-          <div className="absolute top-1/2 -translate-y-1/2 flex justify-between w-full px-4">
+          <div className="absolute top-1/2 -translate-y-1/2 flex justify-between w-full">
             <button
               onClick={() => scroll("left")}
-              className="bg-white/50 backdrop-blur-sm rounded-full p-2 shadow-md hover:bg-white transition-colors"
+              className="bg-white/50 backdrop-blur-sm rounded-full p-2 shadow-md hover:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <ChevronLeftIcon className="h-6 w-6 text-gray-700" />
             </button>
             <button
               onClick={() => scroll("right")}
-              className="bg-white/50 backdrop-blur-sm rounded-full p-2 shadow-md hover:bg-white transition-colors"
+              className="bg-white/50 backdrop-blur-sm rounded-full p-2 shadow-md hover:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <ChevronRightIcon className="h-6 w-6 text-gray-700" />
             </button>
