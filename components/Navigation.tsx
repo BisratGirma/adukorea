@@ -1,31 +1,41 @@
 "use client";
 
 import { useState } from "react";
+import { ShoppingBagIcon, MagnifyingGlassIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="nav-glass shadow-md sticky top-0 z-50">
+    <nav className="bg-white/80 backdrop-blur-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold text-primary">ADU Korea</h1>
+            <a href="#" className="text-2xl font-bold text-primary">ADU Korea</a>
           </div>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center justify-center flex-1 space-x-8">
             <a href="#home" className="text-gray-700 hover:text-primary transition-colors">
               Home
+            </a>
+            <a href="#products" className="text-gray-700 hover:text-primary transition-colors">
+              Products
             </a>
             <a href="#about" className="text-gray-700 hover:text-primary transition-colors">
               About
             </a>
-            <a href="#services" className="text-gray-700 hover:text-primary transition-colors">
-              Services
-            </a>
             <a href="#contact" className="text-gray-700 hover:text-primary transition-colors">
               Contact
+            </a>
+          </div>
+
+          <div className="hidden md:flex items-center space-x-5">
+            <a href="#" className="text-gray-600 hover:text-primary">
+              <ShoppingBagIcon className="h-6 w-6" />
+            </a>
+            <a href="#" className="text-gray-600 hover:text-primary">
+              <MagnifyingGlassIcon className="h-6 w-6" />
             </a>
           </div>
 
@@ -35,21 +45,11 @@ export default function Navigation() {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-gray-700 hover:text-primary focus:outline-none"
             >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {isMenuOpen ? (
-                  <path d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
+              {isMenuOpen ? (
+                <XMarkIcon className="h-6 w-6" />
+              ) : (
+                <Bars3Icon className="h-6 w-6" />
+              )}
             </button>
           </div>
         </div>
@@ -65,18 +65,18 @@ export default function Navigation() {
               Home
             </a>
             <a
+              href="#products"
+              className="block py-2 text-gray-700 hover:text-primary transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Products
+            </a>
+            <a
               href="#about"
               className="block py-2 text-gray-700 hover:text-primary transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               About
-            </a>
-            <a
-              href="#services"
-              className="block py-2 text-gray-700 hover:text-primary transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Services
             </a>
             <a
               href="#contact"
@@ -85,6 +85,14 @@ export default function Navigation() {
             >
               Contact
             </a>
+            <div className="flex items-center space-x-5 pt-4 border-t mt-2">
+              <a href="#" className="text-gray-600 hover:text-primary">
+                <ShoppingBagIcon className="h-6 w-6" />
+              </a>
+              <a href="#" className="text-gray-600 hover:text-primary">
+                <MagnifyingGlassIcon className="h-6 w-6" />
+              </a>
+            </div>
           </div>
         )}
       </div>
