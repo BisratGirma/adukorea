@@ -12,7 +12,7 @@ export default function ProductCard({ product }: { product: Product }) {
     >
       <div className="relative w-full h-56 mx-auto">
         <Image
-          src={product.image || '/placeholder.png'}
+          src={'/placeholder.png'}
           alt={product.name}
           layout="fill"
           objectFit="contain"
