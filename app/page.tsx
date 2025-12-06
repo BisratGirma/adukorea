@@ -6,6 +6,8 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ProductCarousel from "@/components/ProductCarousel";
 import { getProductsByCategory } from "@/lib/products";
+import FeaturedCategories from "@/components/FeaturedCategories";
+import CallToAction from "@/components/CallToAction";
 
 export default function Home() {
   const kBeautyProducts = getProductsByCategory("K-Beauty / Skin Care");
@@ -35,9 +37,13 @@ export default function Home() {
       <ProductCarousel category="Phones/ Tablets" products={phoneProducts} />
       <ProductCarousel category="Games, Earphone, Watch etc." products={gamingProducts} />
 
-      <About />
+      <FeaturedCategories />
+
+      <CallToAction />
+
+      {/* <About />
       <Services />
-      <Contact />
+      <Contact /> */}
       <Footer />
     </main>
   );
