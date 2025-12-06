@@ -1,13 +1,15 @@
-import { getProductsByCategory, getCategoryBySlug } from "@/lib/products";
+import { getProductsByCategory } from "@/lib/products";
+import { slugToCategoryName, categoryDisplayNameMap } from "@/lib/categoryMapping";
 import ProductCard from "@/components/ProductCard";
 import PriceRangeSlider from "@/components/PriceRangeSlider";
 import Link from "next/link";
 
 export default function CategoryPage({ params }: { params: { slug: string } }) {
-  const categoryName = getCategoryBySlug(params.slug);
-  const products = getProductsByCategory(categoryName || "");
+  const internalCategoryName = slugToCategoryName(params.slug);
+  const products = getProductsByCategory(internalCategoryName || "");
+  const displayName = internalCategoryName ? categoryDisplayNameMap[internalCategoryName] : "Category";
 
-  if (!categoryName) {
+  if (!internalCategoryName) {
     return <div>Category not found</div>;
   }
 
@@ -25,9 +27,9 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
             <div className="text-sm text-gray-500 mb-4">
               <Link href="/" className="hover:text-primary">Home</Link>
               <span className="mx-2">/</span>
-              <span>{categoryName}</span>
+              <span>{displayName}</span>
             </div>
-            <h1 className="text-4xl font-serif font-bold text-gray-800 mb-6">{categoryName}</h1>
+            <h1 className="text-4xl font-serif font-bold text-gray-800 mb-6">{displayName}</h1>
             
             <div className="flex justify-between items-center mb-6">
               <p className="text-sm text-gray-600">Showing 1–{products.length} of {products.length} results</p>

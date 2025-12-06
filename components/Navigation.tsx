@@ -4,16 +4,12 @@ import { Fragment } from 'react';
 import Link from 'next/link';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon, MagnifyingGlassIcon, ShoppingBagIcon } from '@heroicons/react/24/outline';
+import { categoryDisplayNameMap, categorySlugMap } from '@/lib/categoryMapping';
 
-const shopCategories = [
-  {
-    name: 'Phone/Tablet',
-    subCategories: ['Samsung', 'iPhones', 'Tablets'],
-  },
-  { name: 'Other Elect.' },
-  { name: 'Accessories' },
-  { name: 'K-Beauty' },
-];
+const shopCategories = Object.keys(categoryDisplayNameMap).map(key => ({
+  name: categoryDisplayNameMap[key],
+  href: `/category/${categorySlugMap[key]}`,
+}));
 
 const navLinks = [
   { name: 'Home', href: '/' },
@@ -68,15 +64,15 @@ export default function Navigation({ transparent = false }: { transparent?: bool
                     {shopCategories.map((category) => (
                       <Menu.Item key={category.name}>
                         {({ active }) => (
-                          <a
-                            href="#"
+                          <Link
+                            href={category.href}
                             className={classNames(
                               active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                               'block px-4 py-2 text-sm'
                             )}
                           >
                             {category.name}
-                          </a>
+                          </Link>
                         )}
                       </Menu.Item>
                     ))}
