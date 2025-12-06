@@ -11,7 +11,10 @@ export const categorySlugMap: { [key: string]: string } = {
 };
 
 export const slugToCategoryName = (slug: string): string | undefined => {
-  return Object.keys(categorySlugMap).find(
-    key => categorySlugMap[key] === slug
-  );
+  for (const key in categorySlugMap) {
+    if (categorySlugMap[key] === slug) {
+      return key;
+    }
+  }
+  return undefined;
 };
