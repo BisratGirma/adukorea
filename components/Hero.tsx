@@ -1,18 +1,7 @@
 export default function Hero() {
   return (
     <section id="home" className="relative h-[60vh] min-h-[400px] max-h-[600px] flex items-center justify-center text-center text-white">
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80')",
-        }}
-      />
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/50" />
-
-      {/* Content */}
+      {/* Content only — background/overlay are provided by the page wrapper */}
       <div className="relative z-10 max-w-3xl mx-auto px-4">
         <h1 className="text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl">
           <span className="block xl:inline">Shop for </span>

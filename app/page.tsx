@@ -4,29 +4,37 @@ import About from "@/components/About";
 import Services from "@/components/Services";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import ProductCard from "@/components/ProductCard";
-import { products } from "@/lib/products";
+import ProductCarousel from "@/components/ProductCarousel";
+import { getProductsByCategory } from "@/lib/products";
 
 export default function Home() {
+  const kBeautyProducts = getProductsByCategory("K-Beauty / Skin Care");
+  const phoneProducts = getProductsByCategory("Phones/ Tablets");
+  const gamingProducts = getProductsByCategory("Games, Earphone, Watch etc.");
+
   return (
     <main>
-      <Navigation />
-      <Hero />
-      {/* Products listing moved to homepage */}
-      <section id="products" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold">Shop</h2>
-            <p className="text-gray-600 mt-2">Simple, clean product experience inspired by Apple.</p>
-          </div>
+      {/* Background wrapper for nav + hero */}
+      <div className="relative">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80')",
+          }}
+        />
+        <div className="absolute inset-0 bg-black/40" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((p) => (
-              <ProductCard key={p.id} product={p} />
-            ))}
-          </div>
+        <div className="relative z-10">
+          <Navigation transparent />
+          <Hero />
         </div>
-      </section>
+      </div>
+
+      <ProductCarousel category="K-Beauty / Skin Care" products={kBeautyProducts} />
+      <ProductCarousel category="Phones/ Tablets" products={phoneProducts} />
+      <ProductCarousel category="Games, Earphone, Watch etc." products={gamingProducts} />
+
       <About />
       <Services />
       <Contact />
