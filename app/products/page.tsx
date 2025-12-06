@@ -1,22 +1,16 @@
 import Navigation from "@/components/Navigation";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Services from "@/components/Services";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/lib/products";
 
-export default function Home() {
+export default function ProductsPage() {
   return (
     <main>
       <Navigation />
-      <Hero />
-      {/* Products listing moved to homepage */}
-      <section id="products" className="py-20 bg-gray-50">
+
+      <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold">Shop</h2>
+            <h1 className="text-4xl font-semibold">Shop</h1>
             <p className="text-gray-600 mt-2">Simple, clean product experience inspired by Apple.</p>
           </div>
 
@@ -27,10 +21,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <About />
-      <Services />
-      <Contact />
-      <Footer />
     </main>
   );
 }

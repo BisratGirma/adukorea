@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
-@theme {
+/* Fonts */
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap'); */
+
+:root {
   --color-primary: #198754;
   --color-primary-50: #e8f5ef;
   --color-primary-100: #d1eadf;
@@ -12,8 +15,51 @@
   --color-primary-700: #0f5132;
   --color-primary-800: #0a3622;
   --color-primary-900: #051b11;
+  /* rgb form for translucent utilities */
+  --color-primary-rgb: 25,135,84;
+}
+
+/* Base typography and layout tweaks to approximate target site */
+html, body {
+  height: 100%;
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, "Noto Sans", sans-serif;
+  color: #111827;
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* Utility classes mapping used Tailwind-like names to our CSS variables.
+   These ensure components using 'text-primary', 'bg-primary' etc work
+   even if Tailwind theme extensions are not present. */
+.text-primary { color: var(--color-primary) !important; }
+.bg-primary { background-color: var(--color-primary) !important; }
+.bg-primary-50 { background-color: var(--color-primary-50) !important; }
+.bg-primary-100 { background-color: var(--color-primary-100) !important; }
+.text-primary-600 { color: var(--color-primary-600) !important; }
+.bg-primary-600 { background-color: var(--color-primary-600) !important; }
+.border-primary { border-color: var(--color-primary) !important; }
+.hover\:bg-primary-600:hover { background-color: var(--color-primary-600) !important; }
+.hover\:text-primary:hover { color: var(--color-primary) !important; }
+.focus\:ring-primary:focus { box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.12); }
+
+/* Simple gradient utility used by the hero */
+.hero-section {
+  background: linear-gradient(135deg, var(--color-primary-50) 0%, #ffffff 60%);
+}
+
+/* Slightly translucent nav background when over hero */
+.nav-glass {
+  background-color: rgba(255,255,255,0.85);
+  backdrop-filter: blur(6px);
+}
+
+/* Footer tweaks */
+.site-footer { background-color: #0f172a; color: #e6eef8; }
+
+/* Small helpers used by form focus states */
+.focus-ring-primary:focus { outline: none; box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.12); border-color: var(--color-primary); }
+
