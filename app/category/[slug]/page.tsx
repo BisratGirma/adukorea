@@ -3,6 +3,7 @@ import { slugToCategoryName, categoryDisplayNameMap } from "@/lib/categoryMappin
 import ProductCard from "@/components/ProductCard";
 import PriceRangeSlider from "@/components/PriceRangeSlider";
 import Link from "next/link";
+import Navigation from "@/components/Navigation";
 
 export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
@@ -15,7 +16,10 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   }
 
   return (
-    <div className="bg-gray-50">
+    <main>
+
+        <Navigation />
+        <div className="bg-gray-50">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Sidebar */}
@@ -50,5 +54,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         </div>
       </div>
     </div>
+    </main>
+    
   );
 }
