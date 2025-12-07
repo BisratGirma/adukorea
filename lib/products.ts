@@ -31,7 +31,7 @@ export const products: Product[] = [
     price: 25.00,
     description: "Advanced Snail 96 Mucin Power Essence.",
     category: "K-Beauty / Skin Care",
-    image: "/images/cosrx-essence.jpg",
+    image: "/placeholder.png",
     gallery: [
       '/placeholder.png',
       '/placeholder.png',
@@ -44,7 +44,7 @@ export const products: Product[] = [
     price: 23.00,
     description: "ANUA Niacinamide 10% + TXA 4% Dark Spot Correcting Serum.",
     category: "K-Beauty / Skin Care",
-    image: "/images/anua-serum.jpg",
+    image: "/placeholder.png",
     gallery: [
       '/placeholder.png',
       '/placeholder.png',
@@ -57,7 +57,7 @@ export const products: Product[] = [
     price: 999,
     description: "The ultimate iPhone.",
     category: "Phones/ Tablets",
-    image: "/images/iphone-14-pro.jpg",
+    image: "/placeholder.png",
     gallery: [
       '/placeholder.png',
       '/placeholder.png',
@@ -70,7 +70,7 @@ export const products: Product[] = [
     price: 999,
     description: "The phone that folds in half.",
     category: "Phones/ Tablets",
-    image: "/images/samsung-galaxy-z-flip-4.jpg",
+    image: "/placeholder.png",
     gallery: [
       '/placeholder.png',
       '/placeholder.png',
@@ -83,7 +83,7 @@ export const products: Product[] = [
     price: 1799,
     description: "The phone that unfolds into a tablet.",
     category: "Phones/ Tablets",
-    image: "/images/samsung-galaxy-fold-4.jpg",
+    image: "/placeholder.png",
     gallery: [
       '/placeholder.png',
       '/placeholder.png',
@@ -96,7 +96,7 @@ export const products: Product[] = [
     price: 279,
     description: "The watch that knows you best.",
     category: "Games, Earphone, Watch etc.",
-    image: "/images/galaxy-watch-5.jpg",
+    image: "/placeholder.png",
     gallery: [
       '/placeholder.png',
       '/placeholder.png',
@@ -109,7 +109,7 @@ export const products: Product[] = [
     price: 99,
     description: "Sound that's always on.",
     category: "Games, Earphone, Watch etc.",
-    image: "/images/jbl-earbuds.jpg",
+    image: "/placeholder.png",
     gallery: [
       '/placeholder.png',
       '/placeholder.png',
@@ -122,7 +122,7 @@ export const products: Product[] = [
     price: 59,
     description: "Simple, fast and portable.",
     category: "Games, Earphone, Watch etc.",
-    image: "/images/wd-elements-hdd.jpg",
+    image: "/placeholder.png",
     gallery: [
       '/placeholder.png',
       '/placeholder.png',
