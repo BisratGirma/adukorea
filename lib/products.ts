@@ -8,6 +8,7 @@ export type Product = {
   emoji?: string;
   category: string;
   image: string;
+  gallery?: string[];
 };
 
 export const products: Product[] = [
@@ -17,7 +18,12 @@ export const products: Product[] = [
     price: 21.00,
     description: "Advanced Snail 92 All in one Cream for face.",
     category: "K-Beauty / Skin Care",
-    image: "/images/cosrx-cream.jpg",
+    image: "/placeholder.png",
+    gallery: [
+      '/placeholder.png',
+      '/placeholder.png',
+      '/placeholder.png',
+    ]
   },
   {
     id: "advanced-snail-96",
@@ -26,6 +32,11 @@ export const products: Product[] = [
     description: "Advanced Snail 96 Mucin Power Essence.",
     category: "K-Beauty / Skin Care",
     image: "/images/cosrx-essence.jpg",
+    gallery: [
+      '/placeholder.png',
+      '/placeholder.png',
+      '/placeholder.png',
+    ]
   },
   {
     id: "niacinamide-10",
@@ -34,6 +45,11 @@ export const products: Product[] = [
     description: "ANUA Niacinamide 10% + TXA 4% Dark Spot Correcting Serum.",
     category: "K-Beauty / Skin Care",
     image: "/images/anua-serum.jpg",
+    gallery: [
+      '/placeholder.png',
+      '/placeholder.png',
+      '/placeholder.png',
+    ]
   },
   {
     id: "iphone-14-pro",
@@ -42,6 +58,11 @@ export const products: Product[] = [
     description: "The ultimate iPhone.",
     category: "Phones/ Tablets",
     image: "/images/iphone-14-pro.jpg",
+    gallery: [
+      '/placeholder.png',
+      '/placeholder.png',
+      '/placeholder.png',
+    ]
   },
   {
     id: "samsung-galaxy-z-flip-4",
@@ -50,6 +71,11 @@ export const products: Product[] = [
     description: "The phone that folds in half.",
     category: "Phones/ Tablets",
     image: "/images/samsung-galaxy-z-flip-4.jpg",
+    gallery: [
+      '/placeholder.png',
+      '/placeholder.png',
+      '/placeholder.png',
+    ]
   },
   {
     id: "samsung-galaxy-fold-4",
@@ -58,6 +84,11 @@ export const products: Product[] = [
     description: "The phone that unfolds into a tablet.",
     category: "Phones/ Tablets",
     image: "/images/samsung-galaxy-fold-4.jpg",
+    gallery: [
+      '/placeholder.png',
+      '/placeholder.png',
+      '/placeholder.png',
+    ]
   },
   {
     id: "galaxy-watch-5",
@@ -66,6 +97,11 @@ export const products: Product[] = [
     description: "The watch that knows you best.",
     category: "Games, Earphone, Watch etc.",
     image: "/images/galaxy-watch-5.jpg",
+    gallery: [
+      '/placeholder.png',
+      '/placeholder.png',
+      '/placeholder.png',
+    ]
   },
   {
     id: "jbl-earbuds",
@@ -74,6 +110,11 @@ export const products: Product[] = [
     description: "Sound that's always on.",
     category: "Games, Earphone, Watch etc.",
     image: "/images/jbl-earbuds.jpg",
+    gallery: [
+      '/placeholder.png',
+      '/placeholder.png',
+      '/placeholder.png',
+    ]
   },
   {
     id: "wd-elements-hdd",
@@ -82,6 +123,11 @@ export const products: Product[] = [
     description: "Simple, fast and portable.",
     category: "Games, Earphone, Watch etc.",
     image: "/images/wd-elements-hdd.jpg",
+    gallery: [
+      '/placeholder.png',
+      '/placeholder.png',
+      '/placeholder.png',
+    ]
   },
 ];
 

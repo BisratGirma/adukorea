@@ -1,0 +1,80 @@
+"use client";
+
+import { useState } from 'react';
+import { Product } from "@/lib/products";
+import QuantitySelector from '@/components/QuantitySelector';
+
+type ProductPageClientProps = {
+  product: Product;
+};
+
+export default function ProductPageClient({ product }: ProductPageClientProps) {
+  const [selectedImage, setSelectedImage] = useState(product.image);
+
+  // Use a placeholder if gallery is empty, otherwise use the real gallery
+  const gallery = (product.gallery && product.gallery.length > 0) 
+    ? [product.image, ...product.gallery]
+    : [product.image];
+
+
+  return (
+    <section className="py-12 sm:py-16">
+      <div className="container mx-auto px-4">
+        <div className="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16">
+          <div className="lg:col-span-3 lg:row-end-1">
+            <div className="lg:flex lg:items-start">
+              <div className="lg:order-2 lg:ml-5">
+                <div className="max-w-xl overflow-hidden rounded-lg">
+                  <img className="h-full w-full max-w-full object-cover" src={selectedImage} alt={product.name} />
+                </div>
+              </div>
+
+              <div className="mt-2 w-full lg:order-1 lg:w-32 lg:flex-shrink-0">
+                <div className="flex flex-row items-start lg:flex-col">
+                  {gallery.map((img, index) => (
+                    <button
+                      key={index}
+                      type="button"
+                      className={`flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 ${selectedImage === img ? 'border-primary' : 'border-transparent'} text-center`}
+                      onClick={() => setSelectedImage(img)}
+                    >
+                      <img className="h-full w-full object-cover" src={img} alt={`Thumbnail ${index + 1}`} />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-2 lg:row-span-2 lg:row-end-2">
+            <p className="text-sm font-medium text-gray-500">{product.category}</p>
+            <h1 className="sm: text-2xl font-bold text-gray-900 sm:text-3xl">{product.name}</h1>
+            
+            <div className="mt-5 flex items-center">
+              <p className="text-lg font-bold text-gray-900">${product.price.toFixed(2)}</p>
+              <p className="ml-2 text-sm text-gray-500">+ Free Shipping</p>
+            </div>
+
+            <div className="mt-8 flex items-center">
+              <QuantitySelector />
+              <button type="button" className="ml-4 flex-1 rounded-md border border-transparent bg-primary px-6 py-3 text-center text-base font-medium text-white shadow-sm hover:bg-primary-600">
+                Add to Cart
+              </button>
+            </div>
+            
+            <div className="mt-8 border-t border-gray-200 pt-8">
+              <h3 className="text-base font-medium text-gray-900">Description</h3>
+              <div className="prose prose-sm mt-4 text-gray-600">
+                <p>{product.description}</p>
+              </div>
+            </div>
+
+            <div className="mt-4 border-t border-gray-200 pt-4">
+               <p className="text-sm text-gray-500">Category: <span className="text-gray-900 font-medium">{product.category}</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
