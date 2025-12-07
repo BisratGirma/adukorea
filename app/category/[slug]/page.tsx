@@ -4,8 +4,9 @@ import ProductCard from "@/components/ProductCard";
 import PriceRangeSlider from "@/components/PriceRangeSlider";
 import Link from "next/link";
 
-export default function CategoryPage({ params }: { params: { slug: string } }) {
-  const internalCategoryName = slugToCategoryName(params.slug);
+export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
+  const internalCategoryName = slugToCategoryName(resolvedParams.slug);
   const products = getProductsByCategory(internalCategoryName || "");
   const displayName = internalCategoryName ? categoryDisplayNameMap[internalCategoryName] : "Category";
 
