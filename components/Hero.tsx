@@ -3,14 +3,13 @@ export default function Hero() {
     <section id="home">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="text-center md:text-left">
+          <div className="order-2 md:order-1 text-center md:text-left">
             <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
               <span className="block xl:inline">Shop for </span>
-              <span className="block text-primary xl:inline">Quality</span>
+              <span className="block text-primary xl:inline">30% Off for travelers</span>
             </h1>
             <p className="mt-4 text-lg text-gray-700 sm:mt-5 sm:text-xl md:mt-6">
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
-              fugiat veniam occaecat fugiat aliqua.
+              We value your time and strive to provide a seamless shopping experience with fast delivery and easy returns.
             </p>
             <div className="mt-8 sm:mt-10">
               <a
@@ -21,7 +20,7 @@ export default function Hero() {
               </a>
             </div>
           </div>
-          <div className="relative h-80 lg:h-96 rounded-lg overflow-hidden">
+          <div className="order-1 md:order-2 relative h-80 lg:h-96 rounded-lg overflow-hidden">
             <img
               className="absolute inset-0 w-full h-full object-cover"
               src="/ethiopian-hostess.png"
