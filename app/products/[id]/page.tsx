@@ -1,10 +1,11 @@
 import Navigation from "@/components/Navigation";
 import { getProduct } from "@/lib/products";
 
-type Props = { params: { id: string } };
+type Props = { params: Promise<{ id: string }> };
 
-export default function ProductDetail({ params }: Props) {
-  const product = getProduct(params.id);
+export default async function ProductDetail({ params }: Props) {
+  const resolvedParams = await params;
+  const product = getProduct(resolvedParams.id);
 
   if (!product) {
     return (
