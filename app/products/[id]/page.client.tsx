@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Product } from "@/lib/products";
 import QuantitySelector from '@/components/QuantitySelector';
+import InnerImageZoom from 'react-inner-image-zoom';
 
 type ProductPageClientProps = {
   product: Product;
@@ -25,7 +26,14 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
             <div className="lg:flex lg:items-start">
               <div className="lg:order-2 lg:ml-5">
                 <div className="max-w-xl overflow-hidden rounded-lg">
-                  <img className="h-full w-full max-w-full object-cover" src={selectedImage} alt={product.name} />
+                  <InnerImageZoom
+                    src={selectedImage}
+                    zoomSrc={selectedImage}
+                    zoomScale={2.5}
+                    hideHint={true}
+                    // alt={product.name}
+                    className="h-full w-full max-w-full object-cover"
+                  />
                 </div>
               </div>
 
