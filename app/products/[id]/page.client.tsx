@@ -71,14 +71,12 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
             </div>
             
             <div className="mt-8 border-t border-gray-200 pt-8">
+              <p className="text-sm text-gray-500 mb-4">Category: <span className="text-gray-900 font-medium">{product.category}</span></p>
               <h3 className="text-base font-medium text-gray-900">Description</h3>
-              <div className="prose prose-sm mt-4 text-gray-600">
-                <p>{product.description}</p>
-              </div>
-            </div>
-
-            <div className="mt-4 border-t border-gray-200 pt-4">
-               <p className="text-sm text-gray-500">Category: <span className="text-gray-900 font-medium">{product.category}</span></p>
+              <div 
+                className="prose prose-sm mt-4 text-gray-600 max-w-none"
+                dangerouslySetInnerHTML={{ __html: product.description }} 
+              />
             </div>
           </div>
         </div>
