@@ -38,12 +38,12 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
               </div>
 
               <div className="mt-2 w-full lg:order-1 lg:w-32 lg:flex-shrink-0">
-                <div className="flex flex-row items-start lg:flex-col">
+                <div className="grid grid-cols-4 gap-2 lg:grid-cols-1 lg:gap-3">
                   {gallery.map((img, index) => (
                     <button
                       key={index}
                       type="button"
-                      className={`flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 ${selectedImage === img ? 'border-primary' : 'border-transparent'} text-center`}
+                      className={`aspect-square w-full overflow-hidden rounded-lg border-2 ${selectedImage === img ? 'border-primary' : 'border-transparent'} text-center`}
                       onClick={() => setSelectedImage(img)}
                     >
                       <img className="h-full w-full object-cover" src={img} alt={`Thumbnail ${index + 1}`} />
