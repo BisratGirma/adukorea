@@ -16,7 +16,7 @@ export const products: Product[] = [
     id: "advanced-snail-92",
     name: "COSRX | Cream",
     price: 21.00,
-    description: "Advanced Snail 92 All in one Cream for face.",
+    description: "Infused with 92% snail secretion filtrate, this lightweight cream glides onto the skin and builds a moisture barrier to plump, hydrate, and soothe skin. Repair, recover, and rebuild your skin's natural radiance.",
     category: "K-Beauty / Skin Care",
     image: "/placeholder.png",
     gallery: [
