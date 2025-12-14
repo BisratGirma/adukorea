@@ -3,8 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useCart } from "@/lib/cart";
-import { createOrderId } from "@/lib/orders";
 
 function formatMoney(value: number) {
   return new Intl.NumberFormat("en-US", {
@@ -14,41 +14,14 @@ function formatMoney(value: number) {
 }
 
 export default function CartPage() {
+  const router = useRouter();
   const { items, itemCount, subtotal, removeItem, setQuantity, clear } = useCart();
-  const [lastOrderId, setLastOrderId] = useState<string | null>(null);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
-  const checkout = async () => {
+  const checkout = () => {
     if (items.length === 0) return;
     setCheckoutError(null);
-
-    const id = createOrderId();
-    try {
-      const res = await fetch("/api/orders", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          id,
-          items: items.map(it => ({
-            id: it.id,
-            name: it.name,
-            price: it.price,
-            quantity: it.quantity,
-            image: it.image,
-          })),
-        }),
-      });
-
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data?.error || `Checkout failed (${res.status})`);
-      }
-
-      setLastOrderId(id);
-      clear();
-    } catch (e: any) {
-      setCheckoutError(e?.message ?? "Checkout failed");
-    }
+    router.push("/checkout");
   };
 
   return (
@@ -66,18 +39,6 @@ export default function CartPage() {
             </button>
           )}
         </div>
-
-        {lastOrderId ? (
-          <div className="mt-6 rounded-2xl border border-green-200 bg-green-50 p-5">
-            <p className="font-semibold text-green-900">Order placed!</p>
-            <p className="mt-1 text-sm text-green-800">
-              Order ID: <span className="font-mono">{lastOrderId}</span>
-            </p>
-            {/* <p className="mt-2 text-sm text-green-800">
-              Admins can view it at <code className="font-mono">/admin</code>.
-            </p> */}
-          </div>
-        ) : null}
 
         {checkoutError ? (
           <div className="mt-6 rounded-2xl border border-red-200 bg-red-50 p-5">
