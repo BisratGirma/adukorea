@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Product } from "@/lib/products";
 import QuantitySelector from '@/components/QuantitySelector';
 import InnerImageZoom from 'react-inner-image-zoom';
+import { useCart } from '@/lib/cart';
 
 type ProductPageClientProps = {
   product: Product;
@@ -11,6 +12,8 @@ type ProductPageClientProps = {
 
 export default function ProductPageClient({ product }: ProductPageClientProps) {
   const [selectedImage, setSelectedImage] = useState(product.image);
+  const [quantity, setQuantity] = useState(1);
+  const { addItem } = useCart();
 
   // Use a placeholder if gallery is empty, otherwise use the real gallery
   const gallery = (product.gallery && product.gallery.length > 0) 
@@ -64,8 +67,22 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
             </div>
 
             <div className="mt-8 flex items-center">
-              <QuantitySelector />
-              <button type="button" className="ml-4 flex-1 rounded-md border border-transparent bg-primary px-6 py-3 text-center text-base font-medium text-white shadow-sm hover:bg-primary-600">
+              <QuantitySelector value={quantity} onChange={setQuantity} />
+              <button
+                type="button"
+                onClick={() =>
+                  addItem(
+                    {
+                      id: product.id,
+                      name: product.name,
+                      price: product.price,
+                      image: product.image,
+                    },
+                    quantity
+                  )
+                }
+                className="ml-4 flex-1 rounded-md border border-transparent bg-primary px-6 py-3 text-center text-base font-medium text-white shadow-sm hover:bg-primary-600"
+              >
                 Add to Cart
               </button>
             </div>

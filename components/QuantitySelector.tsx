@@ -3,11 +3,27 @@
 import { useState } from 'react';
 import { PlusIcon, MinusIcon } from '@heroicons/react/24/solid';
 
-export default function QuantitySelector() {
-  const [quantity, setQuantity] = useState(1);
+export default function QuantitySelector({
+  value,
+  onChange,
+}: {
+  value: number;
+  onChange: (next: number) => void;
+}) {
+  const [quantity, setQuantity] = useState(value);
 
-  const increment = () => setQuantity(prev => prev + 1);
-  const decrement = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1));
+  if (quantity !== value) {
+    setQuantity(value);
+  }
+
+  const commit = (next: number) => {
+    const clamped = next > 1 ? next : 1;
+    setQuantity(clamped);
+    onChange(clamped);
+  };
+
+  const increment = () => commit(quantity + 1);
+  const decrement = () => commit(quantity - 1);
 
   return (
     <div className="flex items-center border border-gray-300 rounded-md w-32">

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon, MagnifyingGlassIcon, ShoppingBagIcon } from '@heroicons/react/24/outline';
 import { categoryDisplayNameMap, categorySlugMap } from '@/lib/categoryMapping';
+import { useCart } from '@/lib/cart';
 
 const shopCategories = Object.keys(categoryDisplayNameMap).map(key => ({
   name: categoryDisplayNameMap[key],
@@ -23,6 +24,7 @@ function classNames(...classes: string[]) {
 }
 
 export default function Navigation({ transparent = false }: { transparent?: boolean }) {
+  const { itemCount } = useCart();
   const navClasses = transparent
     ? 'bg-transparent text-white'
     : 'bg-white text-gray-800 shadow-sm';
@@ -89,9 +91,14 @@ export default function Navigation({ transparent = false }: { transparent?: bool
             <button className={`p-2 rounded-full ${linkClasses}`}>
               <MagnifyingGlassIcon className="h-6 w-6" />
             </button>
-            <button className={`p-2 rounded-full ${linkClasses}`}>
+            <Link href="/cart" className={`relative p-2 rounded-full ${linkClasses}`} aria-label="Cart">
               <ShoppingBagIcon className="h-6 w-6" />
-            </button>
+              {itemCount > 0 && (
+                <span className="absolute -right-1 -top-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1 text-[11px] font-semibold leading-none text-white">
+                  {itemCount}
+                </span>
+              )}
+            </Link>
           </div>
         </div>
       </nav>
