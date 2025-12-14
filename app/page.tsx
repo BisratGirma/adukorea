@@ -1,9 +1,7 @@
-import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
 import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
 import ProductCarousel from "@/components/ProductCarousel";
 import { getProductsByCategory } from "@/lib/products";
 import FeaturedCategories from "@/components/FeaturedCategories";
@@ -16,7 +14,6 @@ export default function Home() {
 
   return (
     <main>
-      <Navigation />
       <Hero />
 
       <ProductCarousel category="K-Beauty / Skin Care" products={kBeautyProducts} />
@@ -30,7 +27,6 @@ export default function Home() {
       {/* <About />
       <Services />
       <Contact /> */}
-      <Footer />
     </main>
   );
 }
