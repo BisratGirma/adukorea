@@ -225,7 +225,7 @@ export default function CheckoutPage() {
                     <input
                       value={info.departureTime}
                       onChange={e => setInfo(prev => ({ ...prev, departureTime: e.target.value }))}
-                      placeholder="Time of departure"
+                      type="time"
                       className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </div>
