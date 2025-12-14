@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "@/lib/cart";
+import { createOrderId } from "@/lib/orders";
 
 function formatMoney(value: number) {
   return new Intl.NumberFormat("en-US", {
@@ -13,6 +15,41 @@ function formatMoney(value: number) {
 
 export default function CartPage() {
   const { items, itemCount, subtotal, removeItem, setQuantity, clear } = useCart();
+  const [lastOrderId, setLastOrderId] = useState<string | null>(null);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
+
+  const checkout = async () => {
+    if (items.length === 0) return;
+    setCheckoutError(null);
+
+    const id = createOrderId();
+    try {
+      const res = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          id,
+          items: items.map(it => ({
+            id: it.id,
+            name: it.name,
+            price: it.price,
+            quantity: it.quantity,
+            image: it.image,
+          })),
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.error || `Checkout failed (${res.status})`);
+      }
+
+      setLastOrderId(id);
+      clear();
+    } catch (e: any) {
+      setCheckoutError(e?.message ?? "Checkout failed");
+    }
+  };
 
   return (
     <main className="min-h-[70vh] bg-gray-50">
@@ -29,6 +66,25 @@ export default function CartPage() {
             </button>
           )}
         </div>
+
+        {lastOrderId ? (
+          <div className="mt-6 rounded-2xl border border-green-200 bg-green-50 p-5">
+            <p className="font-semibold text-green-900">Order placed!</p>
+            <p className="mt-1 text-sm text-green-800">
+              Order ID: <span className="font-mono">{lastOrderId}</span>
+            </p>
+            {/* <p className="mt-2 text-sm text-green-800">
+              Admins can view it at <code className="font-mono">/admin</code>.
+            </p> */}
+          </div>
+        ) : null}
+
+        {checkoutError ? (
+          <div className="mt-6 rounded-2xl border border-red-200 bg-red-50 p-5">
+            <p className="font-semibold text-red-900">Checkout failed</p>
+            <p className="mt-1 text-sm text-red-800">{checkoutError}</p>
+          </div>
+        ) : null}
 
         {items.length === 0 ? (
           <div className="mt-10 rounded-2xl border border-gray-200 bg-white p-8">
@@ -127,13 +183,14 @@ export default function CartPage() {
 
               <button
                 type="button"
+                onClick={checkout}
                 className="mt-5 w-full rounded-full bg-primary px-5 py-3 text-sm font-semibold text-white hover:bg-primary-600"
               >
                 Checkout
               </button>
 
               <p className="mt-3 text-xs text-gray-500">
-                Demo checkout button (no payment processing).
+                Demo checkout button (creates an order record).
               </p>
             </aside>
           </div>
