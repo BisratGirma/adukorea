@@ -5,7 +5,7 @@ import { products } from "@/lib/products";
 export default function ProductsPage() {
   return (
     <main>
-      <Navigation />
+      {/* <Navigation /> */}
 
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

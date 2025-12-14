@@ -12,21 +12,21 @@ export default async function ProductDetail({ params }: Props) {
   if (!product) {
     return (
       <main>
-        <Navigation />
+  
         <section className="py-24 text-center">
           <h2 className="text-2xl font-semibold">Product not found</h2>
           <p className="text-gray-600 mt-4">We couldn't find that product.</p>
         </section>
-        <Footer />
+      
       </main>
     );
   }
 
   return (
     <main className="bg-white">
-      <Navigation />
+     
       <ProductPageClient product={product} />
-      <Footer />
+     
     </main>
   );
 }
