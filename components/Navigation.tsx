@@ -1,11 +1,12 @@
 "use client";
 
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import Link from 'next/link';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon, MagnifyingGlassIcon, ShoppingBagIcon } from '@heroicons/react/24/outline';
 import { categoryDisplayNameMap, categorySlugMap } from '@/lib/categoryMapping';
 import { useCart } from '@/lib/cart';
+import { useRouter } from 'next/navigation';
 
 const shopCategories = Object.keys(categoryDisplayNameMap).map(key => ({
   name: categoryDisplayNameMap[key],
@@ -25,6 +26,8 @@ function classNames(...classes: string[]) {
 
 export default function Navigation({ transparent = false }: { transparent?: boolean }) {
   const { itemCount } = useCart();
+  const router = useRouter();
+  const [q, setQ] = useState('');
   const navClasses = transparent
     ? 'bg-transparent text-white'
     : 'bg-white text-gray-800 shadow-sm';
@@ -88,9 +91,31 @@ export default function Navigation({ transparent = false }: { transparent?: bool
             ))}
           </div>
           <div className="flex items-center space-x-4">
-            <button className={`p-2 rounded-full ${linkClasses}`}>
+            <form
+              className="hidden md:flex items-center"
+              onSubmit={(e) => {
+                e.preventDefault();
+                const query = q.trim();
+                router.push(query ? `/search?q=${encodeURIComponent(query)}` : '/search');
+              }}
+            >
+              <div className="relative">
+                <MagnifyingGlassIcon className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
+                <input
+                  value={q}
+                  onChange={(e) => setQ(e.target.value)}
+                  placeholder="Search…"
+                  className="w-44 lg:w-56 rounded-full border border-gray-300 bg-white py-1.5 pl-10 pr-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
+            </form>
+            <Link
+              href="/search"
+              className={`md:hidden p-2 rounded-full ${linkClasses}`}
+              aria-label="Search"
+            >
               <MagnifyingGlassIcon className="h-6 w-6" />
-            </button>
+            </Link>
             <Link href="/cart" className={`relative p-2 rounded-full ${linkClasses}`} aria-label="Cart">
               <ShoppingBagIcon className="h-6 w-6" />
               {itemCount > 0 && (
