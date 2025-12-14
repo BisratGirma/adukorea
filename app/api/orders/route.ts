@@ -32,6 +32,12 @@ export async function POST(request: Request) {
     id: string;
     customerName?: string;
     customerEmail?: string;
+    customerPhone?: string;
+    roomNumber?: string;
+    departureTime?: string;
+    departureDate?: string;
+    notes?: string;
+    paymentMethod?: string;
     items: Array<{ id: string; name: string; price: number; quantity: number; image?: string }>;
   };
 
@@ -51,6 +57,12 @@ export async function POST(request: Request) {
     id: String(body.id),
     customerName: body.customerName ? String(body.customerName) : undefined,
     customerEmail: body.customerEmail ? String(body.customerEmail) : undefined,
+    customerPhone: body.customerPhone ? String(body.customerPhone) : undefined,
+    roomNumber: body.roomNumber ? String(body.roomNumber) : undefined,
+    departureTime: body.departureTime ? String(body.departureTime) : undefined,
+    departureDate: body.departureDate ? String(body.departureDate) : undefined,
+    notes: body.notes ? String(body.notes) : undefined,
+    paymentMethod: body.paymentMethod ? String(body.paymentMethod) : undefined,
     items,
   });
 

@@ -7,7 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:migrate": "node scripts/db-migrate.mjs"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +17,9 @@
     "@headlessui/react": "^2.2.9",
     "@heroicons/react": "^2.2.0",
     "@vercel/postgres": "^0.10.0",
+    "dotenv": "^17.2.3",
     "next": "^16.0.7",
+    "pg": "^8.14.1",
     "rc-slider": "^11.1.9",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",

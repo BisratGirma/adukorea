@@ -14,6 +14,12 @@ export type DbOrder = {
   status: "new" | "processing" | "fulfilled" | "cancelled";
   customerName?: string;
   customerEmail?: string;
+  customerPhone?: string;
+  roomNumber?: string;
+  departureTime?: string;
+  departureDate?: string;
+  notes?: string;
+  paymentMethod?: string;
   items: DbOrderItem[];
   subtotal: number;
 };
@@ -26,9 +32,23 @@ export async function ensureOrdersSchema() {
       status TEXT NOT NULL DEFAULT 'new',
       customer_name TEXT,
       customer_email TEXT,
+      customer_phone TEXT,
+      room_number TEXT,
+      departure_time TEXT,
+      departure_date TEXT,
+      notes TEXT,
+      payment_method TEXT,
       subtotal NUMERIC NOT NULL DEFAULT 0
     );
   `;
+
+  // Columns may be missing if the table existed before.
+  await sql`ALTER TABLE orders ADD COLUMN IF NOT EXISTS customer_phone TEXT;`;
+  await sql`ALTER TABLE orders ADD COLUMN IF NOT EXISTS room_number TEXT;`;
+  await sql`ALTER TABLE orders ADD COLUMN IF NOT EXISTS departure_time TEXT;`;
+  await sql`ALTER TABLE orders ADD COLUMN IF NOT EXISTS departure_date TEXT;`;
+  await sql`ALTER TABLE orders ADD COLUMN IF NOT EXISTS notes TEXT;`;
+  await sql`ALTER TABLE orders ADD COLUMN IF NOT EXISTS payment_method TEXT;`;
 
   await sql`
     CREATE TABLE IF NOT EXISTS order_items (
@@ -48,6 +68,12 @@ export async function createOrder(params: {
   status?: DbOrder["status"];
   customerName?: string;
   customerEmail?: string;
+  customerPhone?: string;
+  roomNumber?: string;
+  departureTime?: string;
+  departureDate?: string;
+  notes?: string;
+  paymentMethod?: string;
   items: DbOrderItem[];
 }) {
   const status = params.status ?? "new";
@@ -56,8 +82,32 @@ export async function createOrder(params: {
   await sql`BEGIN`;
   try {
     await sql`
-      INSERT INTO orders (id, status, customer_name, customer_email, subtotal)
-      VALUES (${params.id}, ${status}, ${params.customerName ?? null}, ${params.customerEmail ?? null}, ${subtotal})
+      INSERT INTO orders (
+        id,
+        status,
+        customer_name,
+        customer_email,
+        customer_phone,
+        room_number,
+        departure_time,
+        departure_date,
+        notes,
+        payment_method,
+        subtotal
+      )
+      VALUES (
+        ${params.id},
+        ${status},
+        ${params.customerName ?? null},
+        ${params.customerEmail ?? null},
+        ${params.customerPhone ?? null},
+        ${params.roomNumber ?? null},
+        ${params.departureTime ?? null},
+        ${params.departureDate ?? null},
+        ${params.notes ?? null},
+        ${params.paymentMethod ?? null},
+        ${subtotal}
+      )
     `;
 
     for (const item of params.items) {
@@ -83,9 +133,27 @@ export async function listOrders(limit = 50): Promise<DbOrder[]> {
     status: string;
     customer_name: string | null;
     customer_email: string | null;
+    customer_phone: string | null;
+    room_number: string | null;
+    departure_time: string | null;
+    departure_date: string | null;
+    notes: string | null;
+    payment_method: string | null;
     subtotal: string;
   }>`
-    SELECT id, created_at, status, customer_name, customer_email, subtotal
+    SELECT
+      id,
+      created_at,
+      status,
+      customer_name,
+      customer_email,
+      customer_phone,
+      room_number,
+      departure_time,
+      departure_date,
+      notes,
+      payment_method,
+      subtotal
     FROM orders
     ORDER BY created_at DESC
     LIMIT ${limit}
@@ -134,6 +202,12 @@ export async function listOrders(limit = 50): Promise<DbOrder[]> {
     status: (r.status as DbOrder["status"]) ?? "new",
     customerName: r.customer_name ?? undefined,
     customerEmail: r.customer_email ?? undefined,
+    customerPhone: r.customer_phone ?? undefined,
+    roomNumber: r.room_number ?? undefined,
+    departureTime: r.departure_time ?? undefined,
+    departureDate: r.departure_date ?? undefined,
+    notes: r.notes ?? undefined,
+    paymentMethod: r.payment_method ?? undefined,
     items: itemsByOrder.get(r.id) ?? [],
     subtotal: Number(r.subtotal),
   }));

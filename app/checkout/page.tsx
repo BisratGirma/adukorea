@@ -75,6 +75,12 @@ export default function CheckoutPage() {
           id,
           customerName: info.name,
           customerEmail: info.email,
+          customerPhone: info.phone,
+          roomNumber: info.roomNumber,
+          departureTime: info.departureTime,
+          departureDate: info.departureDate,
+          notes: info.notes ?? "",
+          paymentMethod: "cash_on_delivery",
           items: items.map(it => ({
             id: it.id,
             name: it.name,
@@ -82,8 +88,6 @@ export default function CheckoutPage() {
             quantity: it.quantity,
             image: it.image,
           })),
-          // Additional checkout fields currently not stored in DB.
-          // They remain in localStorage for autofill.
         }),
       });
 

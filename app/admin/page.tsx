@@ -179,11 +179,47 @@ export default function AdminPage() {
                         {order.customerEmail ?? ""}
                       </p>
                     )}
+                    {(order.customerPhone || order.roomNumber || order.departureDate || order.departureTime) && (
+                      <div className="mt-2 text-sm text-gray-600 space-y-1">
+                        {order.customerPhone ? (
+                          <p>
+                            Phone: <span className="font-medium text-gray-900">{order.customerPhone}</span>
+                          </p>
+                        ) : null}
+                        {order.roomNumber ? (
+                          <p>
+                            Room: <span className="font-medium text-gray-900">{order.roomNumber}</span>
+                          </p>
+                        ) : null}
+                        {order.departureDate ? (
+                          <p>
+                            Departure date:{" "}
+                            <span className="font-medium text-gray-900">{order.departureDate}</span>
+                          </p>
+                        ) : null}
+                        {order.departureTime ? (
+                          <p>
+                            Departure time:{" "}
+                            <span className="font-medium text-gray-900">{order.departureTime}</span>
+                          </p>
+                        ) : null}
+                      </div>
+                    )}
+                    {order.notes ? (
+                      <p className="mt-2 text-sm text-gray-600">
+                        Notes: <span className="text-gray-900">{order.notes}</span>
+                      </p>
+                    ) : null}
                   </div>
                   <div className="text-sm">
                     <p className="text-gray-600">
                       Status: <span className="font-medium text-gray-900">{order.status}</span>
                     </p>
+                    {order.paymentMethod ? (
+                      <p className="mt-1 text-gray-600">
+                        Payment: <span className="font-medium text-gray-900">{order.paymentMethod}</span>
+                      </p>
+                    ) : null}
                     <p className="mt-1 font-semibold text-gray-900">{formatMoney(order.subtotal)}</p>
                   </div>
                 </div>
