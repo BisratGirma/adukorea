@@ -3,6 +3,7 @@ import { slugToCategoryName, categoryDisplayNameMap } from "@/lib/categoryMappin
 import ProductCard from "@/components/ProductCard";
 import PriceRangeSlider from "@/components/PriceRangeSlider";
 import Link from "next/link";
+import Image from "next/image";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -24,14 +25,14 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       ? products
       : products.filter((p) => p.manufacturer === selectedManufacturer);
 
-  const getManufacturerLogoText = (manufacturer: string) => {
+  const getManufacturerLogoSrc = (manufacturer: string) => {
     switch (manufacturer) {
       case "Apple":
-        return "A";
+        return "/brands/apple.svg";
       case "Samsung":
-        return "S";
+        return "/brands/samsung.svg";
       default:
-        return manufacturer.slice(0, 1).toUpperCase();
+        return null;
     }
   };
 
@@ -59,7 +60,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                 >
                   <span
                     aria-hidden
-                    className={`inline-flex h-6 w-6 items-center justify-center rounded-full border text-xs font-semibold ${
+                    className={`inline-flex h-6 w-6 items-center justify-center rounded-full border text-[10px] font-semibold ${
                       selectedManufacturer === "All"
                         ? "border-white/50 text-white"
                         : "border-gray-300 text-gray-700"
@@ -82,13 +83,23 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                   >
                     <span
                       aria-hidden
-                      className={`inline-flex h-6 w-6 items-center justify-center rounded-full border text-xs font-semibold ${
-                        selectedManufacturer === m
-                          ? "border-white/50 text-white"
-                          : "border-gray-300 text-gray-700"
+                      className={`relative inline-flex h-6 w-6 items-center justify-center overflow-hidden rounded-full border ${
+                        selectedManufacturer === m ? "border-white/50" : "border-gray-300"
                       }`}
                     >
-                      {getManufacturerLogoText(m)}
+                      {getManufacturerLogoSrc(m) ? (
+                        <Image
+                          src={getManufacturerLogoSrc(m)!}
+                          alt={`${m} logo`}
+                          width={24}
+                          height={24}
+                          className={selectedManufacturer === m ? "invert" : ""}
+                        />
+                      ) : (
+                        <span className={selectedManufacturer === m ? "text-white" : "text-gray-700"}>
+                          {m.slice(0, 1).toUpperCase()}
+                        </span>
+                      )}
                     </span>
                     {m}
                   </Link>
