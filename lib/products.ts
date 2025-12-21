@@ -117,7 +117,10 @@ export const products: Product[] = [
       "</ul>",
     category: "Phones/ Tablets",
     manufacturer: "Samsung",
-    image: "/placeholder.png",
+    image: "/products/s22/s22.png",
+    gallery: [
+      "/products/s22/s22-gallary-1.jpg",
+    ],
   },
   {
     id: "galaxy-s22-plus",
@@ -133,7 +136,12 @@ export const products: Product[] = [
       "</ul>",
     category: "Phones/ Tablets",
     manufacturer: "Samsung",
-    image: "/placeholder.png",
+    image: "/products/s22-plus/s22-plus.png",
+    gallery: [
+      "/products/s22-plus/s22-plus-gallary-1.jpg",
+      "/products/s22-plus/s22-plus-gallary-2.jpg",
+      "/products/s22-plus/s22-plus-gallary-3.jpg",
+    ],
   },
   {
     id: "galaxy-s21",
@@ -150,7 +158,11 @@ export const products: Product[] = [
       "</ul>",
     category: "Phones/ Tablets",
     manufacturer: "Samsung",
-    image: "/placeholder.png",
+    image: "/products/s21/s21.png",
+    gallery: [
+      "/products/s21/s21-gallary-1.jpg",
+      "/products/s21/s21-gallary-2.jpg",
+    ],
   },
   {
     id: "iphone-13-pro-128",
@@ -168,7 +180,10 @@ export const products: Product[] = [
       "</ul>",
     category: "Phones/ Tablets",
     manufacturer: "Apple",
-    image: "/placeholder.png",
+    image: "/products/iphone-13-pro/iphone-13-pro.png",
+    gallery: [
+      "/products/iphone-13-pro/iphone-13-pro-gallary-1.jpg",
+    ],
   },
   {
     id: "iphone-13-pro-256",
@@ -185,7 +200,10 @@ export const products: Product[] = [
       "</ul>",
     category: "Phones/ Tablets",
     manufacturer: "Apple",
-    image: "/placeholder.png",
+    image: "/products/iphone-13-pro/iphone-13-pro.png",
+    gallery: [
+      "/products/iphone-13-pro/iphone-13-pro-gallary-1.jpg",
+    ],
   },
   {
     id: "iphone-14-pro-128",
@@ -202,7 +220,10 @@ export const products: Product[] = [
       "</ul>",
     category: "Phones/ Tablets",
     manufacturer: "Apple",
-    image: "/placeholder.png",
+    image: "/products/iphone-14-pro/iphone-14-pro.png",
+    gallery: [
+      "/products/iphone-14-pro/iphone-14-pro-gallary-1.jpg",
+    ],
   },
   {
     id: "iphone-14-pro-256",
@@ -219,7 +240,10 @@ export const products: Product[] = [
       "</ul>",
     category: "Phones/ Tablets",
     manufacturer: "Apple",
-    image: "/placeholder.png",
+    image: "/products/iphone-14-pro/iphone-14-pro.png",
+    gallery: [
+      "/products/iphone-14-pro/iphone-14-pro-gallary-1.jpg",
+    ],
   },
   {
     id: "iphone-15-pro-128",
@@ -237,7 +261,10 @@ export const products: Product[] = [
       "</ul>",
     category: "Phones/ Tablets",
     manufacturer: "Apple",
-    image: "/placeholder.png",
+    image: "/products/iphone-15-pro/iphone-15-pro.png",
+    gallery: [
+      "/products/iphone-15-pro/iphone-15-pro-gallary-1.jpg",
+    ],
   },
   {
     id: "iphone-15-pro-256",
@@ -254,7 +281,10 @@ export const products: Product[] = [
       "</ul>",
     category: "Phones/ Tablets",
     manufacturer: "Apple",
-    image: "/placeholder.png",
+    image: "/products/iphone-15-pro/iphone-15-pro.png",
+    gallery: [
+      "/products/iphone-15-pro/iphone-15-pro-gallary-1.jpg",
+    ],
   },
   {
     id: "iphone-17-pro-max-512",
@@ -272,7 +302,11 @@ export const products: Product[] = [
       "</ul>",
     category: "Phones/ Tablets",
     manufacturer: "Apple",
-    image: "/placeholder.png",
+    image: "/products/iphone-17-pro-max/iphone-17-pro-max.png",
+    gallery: [
+      "/products/iphone-17-pro-max/iphone-17-pro-max-gallary-1.jpg",
+      "/products/iphone-17-pro-max/iphone-17-pro-max-gallary-2.jpg",
+    ],
   },
 ];
 
