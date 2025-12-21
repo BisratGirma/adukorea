@@ -7,6 +7,7 @@ export type Product = {
   badge?: string;
   emoji?: string;
   category: string;
+  manufacturer: string;
   image: string;
   gallery?: string[];
 };
@@ -18,6 +19,7 @@ export const products: Product[] = [
     price: 790,
     description: "Full specifications coming soon.",
     category: "Phones/ Tablets",
+    manufacturer: "Samsung",
     image: "/placeholder.png",
   },
   {
@@ -26,6 +28,7 @@ export const products: Product[] = [
     price: 560,
     description: "Full specifications coming soon.",
     category: "Phones/ Tablets",
+    manufacturer: "Samsung",
     image: "/placeholder.png",
   },
   {
@@ -34,6 +37,7 @@ export const products: Product[] = [
     price: 415,
     description: "Full specifications coming soon.",
     category: "Phones/ Tablets",
+    manufacturer: "Samsung",
     image: "/placeholder.png",
   },
   {
@@ -42,6 +46,7 @@ export const products: Product[] = [
     price: 310,
     description: "Full specifications coming soon.",
     category: "Phones/ Tablets",
+    manufacturer: "Samsung",
     image: "/placeholder.png",
   },
   {
@@ -50,6 +55,7 @@ export const products: Product[] = [
     price: 193,
     description: "Full specifications coming soon.",
     category: "Phones/ Tablets",
+    manufacturer: "Samsung",
     image: "/placeholder.png",
   },
   {
@@ -58,6 +64,7 @@ export const products: Product[] = [
     price: 160,
     description: "Full specifications coming soon.",
     category: "Phones/ Tablets",
+    manufacturer: "Samsung",
     image: "/placeholder.png",
   },
   {
@@ -66,6 +73,7 @@ export const products: Product[] = [
     price: 137,
     description: "Full specifications coming soon.",
     category: "Phones/ Tablets",
+    manufacturer: "Samsung",
     image: "/placeholder.png",
   },
   {
@@ -74,6 +82,7 @@ export const products: Product[] = [
     price: 310,
     description: "Full specifications coming soon.",
     category: "Phones/ Tablets",
+    manufacturer: "Apple",
     image: "/placeholder.png",
   },
   {
@@ -82,6 +91,7 @@ export const products: Product[] = [
     price: 360,
     description: "Full specifications coming soon.",
     category: "Phones/ Tablets",
+    manufacturer: "Apple",
     image: "/placeholder.png",
   },
   {
@@ -90,6 +100,7 @@ export const products: Product[] = [
     price: 410,
     description: "Full specifications coming soon.",
     category: "Phones/ Tablets",
+    manufacturer: "Apple",
     image: "/placeholder.png",
   },
   {
@@ -98,6 +109,7 @@ export const products: Product[] = [
     price: 450,
     description: "Full specifications coming soon.",
     category: "Phones/ Tablets",
+    manufacturer: "Apple",
     image: "/placeholder.png",
   },
   {
@@ -106,6 +118,7 @@ export const products: Product[] = [
     price: 550,
     description: "Full specifications coming soon.",
     category: "Phones/ Tablets",
+    manufacturer: "Apple",
     image: "/placeholder.png",
   },
   {
@@ -114,6 +127,7 @@ export const products: Product[] = [
     price: 620,
     description: "Full specifications coming soon.",
     category: "Phones/ Tablets",
+    manufacturer: "Apple",
     image: "/placeholder.png",
   },
   {
@@ -122,6 +136,7 @@ export const products: Product[] = [
     price: 1620,
     description: "Full specifications coming soon.",
     category: "Phones/ Tablets",
+    manufacturer: "Apple",
     image: "/placeholder.png",
   },
 ];

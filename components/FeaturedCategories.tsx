@@ -9,11 +9,12 @@ const TABS = ["Featured", "Recent", "Best sellers"];
 export default function FeaturedCategories() {
   const [activeTab, setActiveTab] = useState(TABS[0]);
 
-  // For now, we'll just use some of the existing products as placeholders.
-  // Later, this could be replaced with actual logic for each tab.
-  const featuredProducts = getProductsByCategory("K-Beauty / Skin Care").slice(0, 4);
-  const recentProducts = getProductsByCategory("Phones/ Tablets").slice(0, 4);
-  const bestSellerProducts = getProductsByCategory("Games, Earphone, Watch etc.").slice(0, 4);
+  const phoneProducts = getProductsByCategory("Phones/ Tablets");
+  const featuredProducts = phoneProducts.slice(0, 4);
+  const recentProducts = phoneProducts.slice(-4);
+  const bestSellerProducts = [...phoneProducts]
+    .sort((a, b) => b.price - a.price)
+    .slice(0, 4);
 
   const getProductsForTab = (tab: string) => {
     switch (tab) {

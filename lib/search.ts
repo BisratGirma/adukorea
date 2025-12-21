@@ -20,7 +20,7 @@ export function searchProducts(query: string): SearchResult[] {
   const scored = products
     .map(product => {
       const haystack = normalize(
-        `${product.name} ${product.subtitle ?? ""} ${product.category} ${product.description}`
+        `${product.name} ${product.subtitle ?? ""} ${product.manufacturer} ${product.category} ${product.description}`
       );
 
       let score = 0;

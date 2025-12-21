@@ -3,13 +3,26 @@ import { slugToCategoryName, categoryDisplayNameMap } from "@/lib/categoryMappin
 import ProductCard from "@/components/ProductCard";
 import PriceRangeSlider from "@/components/PriceRangeSlider";
 import Link from "next/link";
-import Navigation from "@/components/Navigation";
 
-export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
+type Props = {
+  params: Promise<{ slug: string }>;
+  searchParams?: Promise<{ manufacturer?: string }>;
+};
+
+export default async function CategoryPage({ params, searchParams }: Props) {
   const resolvedParams = await params;
+  const resolvedSearchParams = await searchParams;
   const internalCategoryName = slugToCategoryName(resolvedParams.slug);
   const products = getProductsByCategory(internalCategoryName || "");
   const displayName = internalCategoryName ? categoryDisplayNameMap[internalCategoryName] : "Category";
+
+  const manufacturerQuery = (resolvedSearchParams?.manufacturer ?? "").trim();
+  const selectedManufacturer = manufacturerQuery || "All";
+  const manufacturers = Array.from(new Set(products.map((p) => p.manufacturer))).sort((a, b) => a.localeCompare(b));
+  const filteredProducts =
+    selectedManufacturer === "All"
+      ? products
+      : products.filter((p) => p.manufacturer === selectedManufacturer);
 
   if (!internalCategoryName) {
     return <div>Category not found</div>;
@@ -22,6 +35,29 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Sidebar */}
           <aside className="lg:col-span-1">
+            <div className="p-6 border border-gray-200 rounded-lg bg-white mb-6">
+              <h3 className="font-semibold text-gray-800 mb-4">Filter by manufacturer</h3>
+              <form method="get" className="space-y-3">
+                <select
+                  name="manufacturer"
+                  defaultValue={selectedManufacturer}
+                  className="w-full border border-gray-300 rounded-md text-sm px-3 py-2"
+                >
+                  <option value="All">All</option>
+                  {manufacturers.map((m) => (
+                    <option key={m} value={m}>
+                      {m}
+                    </option>
+                  ))}
+                </select>
+                <button
+                  type="submit"
+                  className="w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-600"
+                >
+                  Apply
+                </button>
+              </form>
+            </div>
             <PriceRangeSlider />
           </aside>
 
@@ -35,7 +71,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
             <h1 className="text-4xl font-serif font-bold text-gray-800 mb-6">{displayName}</h1>
             
             <div className="flex justify-between items-center mb-6">
-              <p className="text-sm text-gray-600">Showing 1–{products.length} of {products.length} results</p>
+              <p className="text-sm text-gray-600">Showing 1–{filteredProducts.length} of {filteredProducts.length} results</p>
               <select className="border border-gray-300 rounded-md text-sm">
                 <option>Sort by price: high to low</option>
                 <option>Sort by price: low to high</option>
@@ -44,7 +80,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-              {products.map((product) => (
+              {filteredProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>

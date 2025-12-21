@@ -8,17 +8,13 @@ import FeaturedCategories from "@/components/FeaturedCategories";
 import CallToAction from "@/components/CallToAction";
 
 export default function Home() {
-  const kBeautyProducts = getProductsByCategory("K-Beauty / Skin Care");
   const phoneProducts = getProductsByCategory("Phones/ Tablets");
-  const gamingProducts = getProductsByCategory("Games, Earphone, Watch etc.");
 
   return (
     <main>
       <Hero />
 
-      <ProductCarousel category="K-Beauty / Skin Care" products={kBeautyProducts} />
       <ProductCarousel category="Phones/ Tablets" products={phoneProducts} />
-      <ProductCarousel category="Games, Earphone, Watch etc." products={gamingProducts} />
 
       <FeaturedCategories />
 
