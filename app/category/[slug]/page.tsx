@@ -24,6 +24,17 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       ? products
       : products.filter((p) => p.manufacturer === selectedManufacturer);
 
+  const getManufacturerLogoText = (manufacturer: string) => {
+    switch (manufacturer) {
+      case "Apple":
+        return "A";
+      case "Samsung":
+        return "S";
+      default:
+        return manufacturer.slice(0, 1).toUpperCase();
+    }
+  };
+
   if (!internalCategoryName) {
     return <div>Category not found</div>;
   }
@@ -37,26 +48,52 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           <aside className="lg:col-span-1">
             <div className="p-6 border border-gray-200 rounded-lg bg-white mb-6">
               <h3 className="font-semibold text-gray-800 mb-4">Filter by manufacturer</h3>
-              <form method="get" className="space-y-3">
-                <select
-                  name="manufacturer"
-                  defaultValue={selectedManufacturer}
-                  className="w-full border border-gray-300 rounded-md text-sm px-3 py-2"
+              <div className="flex flex-wrap gap-2">
+                <Link
+                  href={`/category/${resolvedParams.slug}`}
+                  className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                    selectedManufacturer === "All"
+                      ? "bg-primary text-white border-primary"
+                      : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
+                  }`}
                 >
-                  <option value="All">All</option>
-                  {manufacturers.map((m) => (
-                    <option key={m} value={m}>
-                      {m}
-                    </option>
-                  ))}
-                </select>
-                <button
-                  type="submit"
-                  className="w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-600"
-                >
-                  Apply
-                </button>
-              </form>
+                  <span
+                    aria-hidden
+                    className={`inline-flex h-6 w-6 items-center justify-center rounded-full border text-xs font-semibold ${
+                      selectedManufacturer === "All"
+                        ? "border-white/50 text-white"
+                        : "border-gray-300 text-gray-700"
+                    }`}
+                  >
+                    ALL
+                  </span>
+                  All
+                </Link>
+
+                {manufacturers.map((m) => (
+                  <Link
+                    key={m}
+                    href={`/category/${resolvedParams.slug}?manufacturer=${encodeURIComponent(m)}`}
+                    className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                      selectedManufacturer === m
+                        ? "bg-primary text-white border-primary"
+                        : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
+                    }`}
+                  >
+                    <span
+                      aria-hidden
+                      className={`inline-flex h-6 w-6 items-center justify-center rounded-full border text-xs font-semibold ${
+                        selectedManufacturer === m
+                          ? "border-white/50 text-white"
+                          : "border-gray-300 text-gray-700"
+                      }`}
+                    >
+                      {getManufacturerLogoText(m)}
+                    </span>
+                    {m}
+                  </Link>
+                ))}
+              </div>
             </div>
             <PriceRangeSlider />
           </aside>
