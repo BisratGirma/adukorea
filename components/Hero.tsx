@@ -13,7 +13,7 @@ export default function Hero() {
             </p>
             <div className="mt-8 sm:mt-10">
               <a
-                href="#products"
+                href="products"
                 className="inline-block px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary-600 md:py-4 md:text-lg md:px-10 shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
               >
                 Open Store
